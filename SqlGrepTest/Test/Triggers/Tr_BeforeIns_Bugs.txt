@@ -1,0 +1,30 @@
+﻿CREATE OR REPLACE TRIGGER Tr_BeforeIns_Bugs 
+BEFORE INSERT ON Bugs 
+FOR EACH ROW 
+DECLARE 
+  count BIGINT UNSIGNED; 
+BEGIN 
+  SELECT 
+      COUNT(account_id) 
+  INTO 
+      count 
+  FROM 
+      Accounts 
+  WHERE 
+      account_id = :NEW.reported_by 
+  ; 
+  IF (0 = count) THEN 
+      INSERT INTO 
+          Accounts 
+          ( 
+          account_id, 
+          account_name 
+          ) 
+      VALUES 
+          ( 
+          :NEW.reported_by, 
+          'NEW NAME' 
+          ) 
+      ; 
+  END IF; 
+END;

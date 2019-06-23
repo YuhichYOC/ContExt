@@ -1,0 +1,6 @@
+﻿a1\.txt	contains
+abc	def
+ab1\.txt	contains
+fgh	ijk
+ac1\.txt	contains
+klm	opq

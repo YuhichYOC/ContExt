@@ -1,0 +1,6 @@
+﻿CREATE TABLE Tags ( 
+  bug_id                      BIGINT UNSIGNED NOT NULL, 
+  tag                         VARCHAR(20) NOT NULL, 
+  PRIMARY KEY (bug_id, tag), 
+  FOREIGN KEY (bug_id)        REFERENCES Bugs(bug_id) 
+);
