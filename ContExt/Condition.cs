@@ -36,8 +36,8 @@ public class Condition {
         match = new Match();
     }
 
-    public void Add(string pattern) {
-        rowConditions.Add(new RowCondition(pattern));
+    public void Add(string pattern, bool negative) {
+        rowConditions.Add(new RowCondition(pattern, negative));
     }
 
     public void Test(string arg, int rix) {
@@ -57,29 +57,69 @@ public class Condition {
                     continue;
                 }
                 if (rowConditions[i].Test(arg.Substring(testStart))) {
-                    if (!rowConditions[i - 1].IsHit) {
-                        match.Init();
-                        return;
-                    }
                     testStart += rowConditions[i].Left;
                 }
             }
-            for (int j = 1; rcc > j; ++j) {
-                if (!rowConditions[j].IsHit) {
-                    return;
-                }
-            }
+        }
+        if (!ConsistencyInspection()) {
+            InitConditions();
+            match.Init();
+        }
+        if (AllHit()) {
+            InitConditions();
             Get.Add(match);
             match = new Match();
         }
     }
 
+    private bool ConsistencyInspection() {
+        IList<RowCondition> p = new List<RowCondition>();
+        foreach (RowCondition item in rowConditions) {
+            if (item.Negative) {
+                continue;
+            }
+            p.Add(item);
+        }
+        int prcc = p.Count;
+        for (int i = 1; prcc > i; ++i) {
+            if (!p[i - 1].IsHit && p[i].IsHit) {
+                return false;
+            }
+        }
+        IList<RowCondition> n = new List<RowCondition>();
+        foreach (RowCondition item in rowConditions) {
+            if (item.Negative) {
+                n.Add(item);
+            }
+        }
+        int nrcc = n.Count;
+        for (int j = 0; nrcc > j; ++j) {
+            if (n[j].IsHit) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private bool AllHit() {
+        foreach (RowCondition item in rowConditions) {
+            if (!item.Negative && !item.IsHit) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void Init() {
+        InitConditions();
+        Get.Clear();
+        match.Init();
+    }
+
+    private void InitConditions() {
         foreach (RowCondition c in rowConditions) {
             c.Init();
         }
-        Get.Clear();
-        match.Init();
     }
 
     public override string ToString() {
@@ -88,7 +128,12 @@ public class Condition {
             if (0 < i) {
                 ret += @" ## ";
             }
-            ret += rowConditions[i].ToString();
+            if (rowConditions[i].Negative) {
+                ret += @"[N]" + rowConditions[i].ToString();
+            }
+            else {
+                ret += rowConditions[i].ToString();
+            }
         }
         return ret;
     }
@@ -97,12 +142,15 @@ public class Condition {
 
         private string p;
 
+        public bool Negative { get; private set; }
+
         public bool IsHit { get; private set; }
 
         public int Left { get; private set; }
 
-        public RowCondition(string pattern) {
+        public RowCondition(string pattern, bool negative) {
             p = pattern;
+            Negative = negative;
             IsHit = false;
             Left = 0;
         }
@@ -115,7 +163,8 @@ public class Condition {
         public bool Test(string arg) {
             if (System.Text.RegularExpressions.Regex.IsMatch(arg, p)) {
                 IsHit = true;
-                Left = System.Text.RegularExpressions.Regex.Match(arg, @".*" + p).Length;
+                string capture = System.Text.RegularExpressions.Regex.Match(arg, p).Captures[0].Value;
+                Left = arg.IndexOf(capture) + capture.Length;
                 return true;
             }
             return false;

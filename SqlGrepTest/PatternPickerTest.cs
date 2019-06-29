@@ -279,12 +279,15 @@ namespace SqlGrepTest {
             const string L1T5 = @"(BEFORE|AFTER)";
             const string L1T6 = @"(UPDATE|INSERT|DELETE)";
             const string L1T7 = @"ON";
-            const string L1T8 = @"[:TABLENAME:]";
+            const string L1T8 = @"[N](SELECT|UPDATE|INSERT|DELETE)";
+            const string L1T9 = @"[:TABLENAME:]";
             const string L2T1 = @"(UPDATE|INSERT|DELETE)";
-            const string L2T2 = @"[:TABLENAME:]";
+            const string L2T2 = @"[N]ON";
+            const string L2T3 = @"[:TABLENAME:]";
             const string L3T1 = @"(UPDATE|INSERT|DELETE)";
-            const string L3T2 = @"[:TABLENAME:]";
-            const string L3T3 = @"IMMEDIATE";
+            const string L3T2 = @"[N]ON";
+            const string L3T3 = @"[:TABLENAME:]";
+            const string L3T4 = @"IMMEDIATE";
 
             Assert.AreEqual(L1T1, p.Triggers[0][0]);
             Assert.AreEqual(L1T2, p.Triggers[0][1]);
@@ -294,11 +297,14 @@ namespace SqlGrepTest {
             Assert.AreEqual(L1T6, p.Triggers[0][5]);
             Assert.AreEqual(L1T7, p.Triggers[0][6]);
             Assert.AreEqual(L1T8, p.Triggers[0][7]);
+            Assert.AreEqual(L1T9, p.Triggers[0][8]);
             Assert.AreEqual(L2T1, p.Triggers[1][0]);
             Assert.AreEqual(L2T2, p.Triggers[1][1]);
+            Assert.AreEqual(L2T3, p.Triggers[1][2]);
             Assert.AreEqual(L3T1, p.Triggers[2][0]);
             Assert.AreEqual(L3T2, p.Triggers[2][1]);
             Assert.AreEqual(L3T3, p.Triggers[2][2]);
+            Assert.AreEqual(L3T4, p.Triggers[2][3]);
         }
     }
 }

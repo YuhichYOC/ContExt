@@ -45,7 +45,12 @@ public class ContExt {
                 Condition add = new Condition();
                 string[] addc = l.Split(Delimiter.ToCharArray());
                 for (int i = 0; addc.Length > i; ++i) {
-                    add.Add(addc[i]);
+                    if (addc[i].StartsWith(@"[N]")) {
+                        add.Add(addc[i].Substring(3), true);
+                    }
+                    else {
+                        add.Add(addc[i], false);
+                    }
                 }
                 conditions.Add(add);
             }
@@ -56,7 +61,12 @@ public class ContExt {
         foreach (IList<string> l in arg) {
             Condition add = new Condition();
             foreach (string item in l) {
-                add.Add(item);
+                if (item.StartsWith(@"[N]")) {
+                    add.Add(item.Substring(3), true);
+                }
+                else {
+                    add.Add(item, false);
+                }
             }
             conditions.Add(add);
         }
