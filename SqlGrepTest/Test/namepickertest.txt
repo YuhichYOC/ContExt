@@ -1,0 +1,10 @@
+﻿TABLE	Account
+TABLE	Bugs
+TABLE	BugsProducts
+TABLE	BugStatus
+TABLE	Comments
+TABLE	Products
+TABLE	Screenshots
+TABLE	Tags
+TRIGGER	Tr_AfterIns_Accounts
+TRIGGER	Tr_BeforeIns_Bugs

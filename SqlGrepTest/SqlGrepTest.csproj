@@ -59,40 +59,46 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="names.txt">
+    <Content Include="Test\names.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="patterns.txt">
+    <Content Include="Test\patterns.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\Accounts.txt">
+    <Content Include="Test\namepickertest.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\Bugs.txt">
+    <Content Include="Test\patternpickertest.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\BugsProducts.txt">
+    <Content Include="Test\Test1\Tables\Accounts.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\BugStatus.txt">
+    <Content Include="Test\Test1\Tables\Bugs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\Comments.txt">
+    <Content Include="Test\Test1\Tables\BugsProducts.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\Products.txt">
+    <Content Include="Test\Test1\Tables\BugStatus.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\Screenshots.txt">
+    <Content Include="Test\Test1\Tables\Comments.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Tables\Tags.txt">
+    <Content Include="Test\Test1\Tables\Products.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Triggers\Tr_AfterIns_Accounts.txt">
+    <Content Include="Test\Test1\Tables\Screenshots.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Test\Triggers\Tr_BeforeIns_Bugs.txt">
+    <Content Include="Test\Test1\Tables\Tags.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test\Test1\Triggers\Tr_AfterIns_Accounts.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test\Test1\Triggers\Tr_BeforeIns_Bugs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

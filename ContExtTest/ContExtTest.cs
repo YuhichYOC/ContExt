@@ -11,7 +11,7 @@ namespace ContExtTest {
             ContExt c = new ContExt();
             c.Delimiter = "\t";
             c.Encoding = "Shift-JIS";
-            c.Init(@"./patterns.txt");
+            c.Init(@"./patterns.txt", false);
             c.Scan(@"./Test1");
 
             IList<Match> ret = c.Get;
@@ -94,7 +94,7 @@ namespace ContExtTest {
             ContExt c = new ContExt();
             c.Delimiter = "\t";
             c.Encoding = "Shift-JIS";
-            c.Init(@"./patterns.txt");
+            c.Init(@"./patterns.txt", false);
             c.Scan(@"./Test2");
 
             IList<Match> ret = c.Get;

@@ -24,6 +24,8 @@ using System.Collections.Generic;
 
 public class Condition {
 
+    public string Tag { get; set; }
+
     private IList<RowCondition> rowConditions;
 
     private Match match;
@@ -46,6 +48,7 @@ public class Condition {
         }
         int testStart = 0;
         if (!match.Started && rowConditions[0].Test(arg)) {
+            match.Tag = Tag;
             match.Start(rix);
             testStart += rowConditions[0].Left;
         }

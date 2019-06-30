@@ -268,7 +268,7 @@ namespace SqlGrepTest {
         [TestMethod]
         public void TestMethod1() {
             SqlGrep.PatternPicker p = new SqlGrep.PatternPicker();
-            p.Read(@"./patterns.txt");
+            p.Read(@"./Test/patternpickertest.txt");
 
             Assert.AreEqual(3, p.Triggers.Count);
 

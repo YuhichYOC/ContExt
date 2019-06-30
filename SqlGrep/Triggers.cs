@@ -38,7 +38,7 @@ namespace SqlGrep {
         public void scan(string path) {
             ContExt c = new ContExt();
             PatternPicker.FillTriggers(NamePicker);
-            c.Init(PatternPicker.Triggers);
+            c.Init(PatternPicker.Triggers, true);
             c.Scan(path);
             IList<Match> ret = c.Get;
             foreach (Match m in ret) {

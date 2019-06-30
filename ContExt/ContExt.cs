@@ -38,38 +38,48 @@ public class ContExt {
         Get = new List<Match>();
     }
 
-    public void Init(string arg) {
+    public void Init(string arg, bool startsWithTag) {
         using (System.IO.StreamReader r = new System.IO.StreamReader(arg, System.Text.Encoding.GetEncoding(Encoding))) {
             while (!r.EndOfStream) {
-                string l = r.ReadLine();
-                Condition add = new Condition();
-                string[] addc = l.Split(Delimiter.ToCharArray());
-                for (int i = 0; addc.Length > i; ++i) {
-                    if (addc[i].StartsWith(@"[N]")) {
-                        add.Add(addc[i].Substring(3), true);
-                    }
-                    else {
-                        add.Add(addc[i], false);
-                    }
-                }
-                conditions.Add(add);
+                conditions.Add(FetchPatterns(Split(r.ReadLine()), startsWithTag));
             }
         }
     }
 
-    public void Init(IList<IList<string>> arg) {
-        foreach (IList<string> l in arg) {
-            Condition add = new Condition();
-            foreach (string item in l) {
-                if (item.StartsWith(@"[N]")) {
-                    add.Add(item.Substring(3), true);
-                }
-                else {
-                    add.Add(item, false);
-                }
-            }
-            conditions.Add(add);
+    private IList<string> Split(string arg) {
+        IList<string> ret = new List<string>();
+        string[] items = arg.Split(Delimiter.ToCharArray());
+        for (int i = 0; items.Length > i; ++i) {
+            ret.Add(items[i]);
         }
+        return ret;
+    }
+
+    public void Init(IList<IList<string>> arg, bool startsWithTag) {
+        for (int i = 0; arg.Count > i; ++i) {
+            conditions.Add(FetchPatterns(arg[i], startsWithTag));
+        }
+    }
+
+    private Condition FetchPatterns(IList<string> patterns, bool startsWithTag) {
+        Condition ret = new Condition();
+        for (int i = 0; patterns.Count > i; ++i) {
+            if (0 == i && startsWithTag) {
+                ret.Tag = patterns[i];
+                continue;
+            }
+            bool negative = false;
+            if (patterns[i].StartsWith(@"[N]")) {
+                negative = true;
+                patterns[i] = patterns[i].Substring(3);
+            }
+            if (patterns[i].StartsWith(@"(-)")) {
+                negative = true;
+                patterns[i] = patterns[i].Substring(3);
+            }
+            ret.Add(patterns[i], negative);
+        }
+        return ret;
     }
 
     public void Scan(string path) {

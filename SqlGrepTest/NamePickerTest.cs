@@ -8,7 +8,7 @@ namespace SqlGrepTest {
         [TestMethod]
         public void TestMethod1() {
             SqlGrep.NamePicker np = new SqlGrep.NamePicker();
-            np.Read(@"./names.txt");
+            np.Read(@"./Test/namepickertest.txt");
 
             Assert.AreEqual(8, np.Tables.Count);
 

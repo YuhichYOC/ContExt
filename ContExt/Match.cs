@@ -23,6 +23,8 @@ using System.Collections.Generic;
 
 public class Match {
 
+    public string Tag { get; set; }
+
     public IList<string> Get { get; }
 
     public int StartAt { get; private set; }
