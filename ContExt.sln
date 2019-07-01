@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlGrep", "SqlGrep\SqlGrep.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlGrepTest", "SqlGrepTest\SqlGrepTest.csproj", "{3C76A9C6-D2A0-47D1-90C6-2E67B5580D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContExtKicker", "ContExtKicker\ContExtKicker.csproj", "{A3333446-5981-4BDE-BF2E-A9CDACB75AC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContExtKicker", "ContExtKicker\ContExtKicker.csproj", "{6375821D-EC2B-4834-9C53-BB67D2D573CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{3C76A9C6-D2A0-47D1-90C6-2E67B5580D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C76A9C6-D2A0-47D1-90C6-2E67B5580D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C76A9C6-D2A0-47D1-90C6-2E67B5580D90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3333446-5981-4BDE-BF2E-A9CDACB75AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3333446-5981-4BDE-BF2E-A9CDACB75AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3333446-5981-4BDE-BF2E-A9CDACB75AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3333446-5981-4BDE-BF2E-A9CDACB75AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6375821D-EC2B-4834-9C53-BB67D2D573CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6375821D-EC2B-4834-9C53-BB67D2D573CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6375821D-EC2B-4834-9C53-BB67D2D573CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6375821D-EC2B-4834-9C53-BB67D2D573CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

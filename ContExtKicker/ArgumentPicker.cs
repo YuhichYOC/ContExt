@@ -48,10 +48,12 @@ namespace ContExtKicker {
         private void PickDelimiter() {
             for (int i = 0; argList.Count > i; ++i) {
                 if (argList[i].StartsWith(@"--Delim")) {
-                    if (1 < argList[i + 1].Length) {
-                        throw new ArgumentException(@"デリミタは 1 文字で指定してください");
+                    if (@"\t".Equals(argList[i + 1])) {
+                        Delimiter = "\t";
                     }
-                    Delimiter = argList[i + 1];
+                    else {
+                        Delimiter = argList[i + 1];
+                    }
                     return;
                 }
             }
@@ -70,7 +72,7 @@ namespace ContExtKicker {
         private void PickPatternFile() {
             for (int i = 0; argList.Count > i; ++i) {
                 if (argList[i].StartsWith(@"--Patt")) {
-                    if (!System.IO.File.Exists(argList[i])) {
+                    if (!System.IO.File.Exists(argList[i + 1])) {
                         throw new ArgumentException(@"パターンファイル " + argList[i + 1] + @" はファイルシステム上に存在しません");
                     }
                     PatternFile = argList[i + 1];
@@ -82,7 +84,7 @@ namespace ContExtKicker {
         private void PickDirectoryPath() {
             for (int i = 0; argList.Count > i; ++i) {
                 if (argList[i].StartsWith(@"--Dir")) {
-                    if (!System.IO.Directory.Exists(argList[i])) {
+                    if (!System.IO.Directory.Exists(argList[i + 1])) {
                         throw new ArgumentException(@"ディレクトリ " + argList[i + 1] + @" はファイルシステム上に存在しません");
                     }
                     DirectoryPath = argList[i + 1];

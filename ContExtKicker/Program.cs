@@ -8,6 +8,12 @@ namespace ContExtKicker {
         private static void Main(string[] args) {
             try {
                 ArgumentPicker picker = new ArgumentPicker(args);
+                if (string.IsNullOrEmpty(picker.PatternFile)) {
+                    return;
+                }
+                if (string.IsNullOrEmpty(picker.DirectoryPath)) {
+                    return;
+                }
                 ContExt c = new ContExt();
                 if (!string.IsNullOrEmpty(picker.Delimiter)) {
                     c.Delimiter = picker.Delimiter;
@@ -17,7 +23,12 @@ namespace ContExtKicker {
                 }
                 c.Init(picker.PatternFile, false);
                 c.Scan(picker.DirectoryPath);
-                Write(c.Get, picker.OutputPath);
+                if (string.IsNullOrEmpty(picker.OutputPath)) {
+                    WriteStdout(c.Get);
+                }
+                else {
+                    Write(c.Get, picker.OutputPath);
+                }
             }
             catch (System.Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -35,6 +46,19 @@ namespace ContExtKicker {
                         sw.Write(arg[i].Get[j]);
                         sw.Write("\r\n");
                     }
+                }
+            }
+        }
+
+        private static void WriteStdout(IList<Match> arg) {
+            for (int i = 0; arg.Count > i; ++i) {
+                for (int j = 0; arg[i].Get.Count > j; ++j) {
+                    Console.Write(arg[i].Path);
+                    Console.Write("\t");
+                    Console.Write((arg[i].StartAt + j).ToString());
+                    Console.Write("\t");
+                    Console.Write(arg[i].Get[j]);
+                    Console.Write("\r\n");
                 }
             }
         }

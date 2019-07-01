@@ -1,0 +1,3 @@
+﻿CREATE TABLE BugStatus ( 
+  status                      VARCHAR(20) PRIMARY KEY 
+);

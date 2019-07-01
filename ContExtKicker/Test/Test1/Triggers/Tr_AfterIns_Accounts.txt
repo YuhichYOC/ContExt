@@ -1,0 +1,30 @@
+﻿CREATE OR REPLACE TRIGGER Tr_AfterIns_Accounts 
+AFTER INSERT ON Accounts 
+FOR EACH ROW 
+DECLARE 
+  count BIGINT UNSIGNED; 
+BEGIN 
+  SELECT 
+      COUNT(bug_id) 
+  INTO 
+      count 
+  FROM 
+      Tags 
+  WHERE 
+      bug_id = :NEW.account_id 
+  ; 
+  IF (0 = count) THEN 
+      INSERT INTO 
+          Tags 
+          ( 
+          bug_id, 
+          tag 
+          ) 
+      VALUES 
+          ( 
+          :NEW.account_id, 
+          'NEW TAG' 
+          ) 
+      ; 
+  END IF; 
+END;
