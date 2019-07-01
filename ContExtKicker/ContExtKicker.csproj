@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ContExt\ContExt.csproj" />
+    <ProjectReference Include="..\DirectoryEntity\DirectoryEntity.csproj" />
+    <ProjectReference Include="..\FileEntity\FileEntity.csproj" />
+  </ItemGroup>
+
+</Project>

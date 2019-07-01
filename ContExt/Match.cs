@@ -52,4 +52,12 @@ public class Match {
         Get.Clear();
         StartAt = -1;
     }
+
+    public string OneLine() {
+        string ret = @"";
+        foreach (string l in Get) {
+            ret += l;
+        }
+        return ret;
+    }
 }

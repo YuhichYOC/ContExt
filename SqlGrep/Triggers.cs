@@ -25,6 +25,24 @@ namespace SqlGrep {
 
     public class Triggers {
 
+        private const string TAG_TRIGGER = @"TRIGGER";
+
+        private const string TAG_SELECT = @"SELECT";
+
+        private const string TAG_SELECT_IMMEDIATE = @"SELECTIMMEDIATE";
+
+        private const string TAG_UPDATE = @"UPDATE";
+
+        private const string TAG_UPDATE_IMMEDIATE = @"UPDATEIMMEDIATE";
+
+        private const string TAG_INSERT = @"INSERT";
+
+        private const string TAG_INSERT_IMMEDIATE = @"INSERTIMMEDIATE";
+
+        private const string TAG_DELETE = @"DELETE";
+
+        private const string TAG_DELETE_IMMEDIATE = @"DELETEIMMEDIATE";
+
         private IList<Trigger> triggers;
 
         public Triggers() {
@@ -41,7 +59,20 @@ namespace SqlGrep {
             c.Init(PatternPicker.Triggers, true);
             c.Scan(path);
             IList<Match> ret = c.Get;
-            foreach (Match m in ret) {
+            Trigger trigger = null;
+            string currentFile = @"";
+            for (int i = 0; ret.Count > i; ++i) {
+                if (!ret[i].Path.Equals(currentFile)) {
+                    currentFile = ret[i].Path;
+                    trigger = new Trigger();
+                }
+                if (TAG_TRIGGER.Equals(ret[i].Tag)) {
+                    trigger.Name = NamePicker.PickTrigger(ret[i].OneLine());
+                    trigger.TriggerTable = NamePicker.PickSelectable(ret[i].OneLine());
+                }
+                if (TAG_SELECT.Equals(ret[i].Tag)) {
+                    trigger.Selects.Add(NamePicker.PickSelectable(ret[i].OneLine()));
+                }
             }
         }
 
@@ -51,9 +82,13 @@ namespace SqlGrep {
 
             public Trigger() {
                 Selects = new List<string>();
+                SelectImmediates = new List<string>();
                 Updates = new List<string>();
+                UpdateImmediates = new List<string>();
                 Inserts = new List<string>();
+                InsertImmediates = new List<string>();
                 Deletes = new List<string>();
+                DeleteImmediates = new List<string>();
             }
 
             public string Name { get; set; }
@@ -62,11 +97,19 @@ namespace SqlGrep {
 
             public IList<string> Selects { get; set; }
 
+            public IList<string> SelectImmediates { get; set; }
+
             public IList<string> Updates { get; set; }
+
+            public IList<string> UpdateImmediates { get; set; }
 
             public IList<string> Inserts { get; set; }
 
+            public IList<string> InsertImmediates { get; set; }
+
             public IList<string> Deletes { get; set; }
+
+            public IList<string> DeleteImmediates { get; set; }
 
             public override string ToString() {
                 string ret = Label + "\t" + Name + "\t" + @"WATCHES" + "\t" + TriggerTable + "\r\n";

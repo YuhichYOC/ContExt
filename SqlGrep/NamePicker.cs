@@ -130,5 +130,32 @@ namespace SqlGrep {
                 Selectables.Add(item);
             }
         }
+
+        public string PickExecutable(string arg) {
+            for (int i = 0; Executables.Count > i; ++i) {
+                if (-1 < arg.IndexOf(Executables[i])) {
+                    return Executables[i];
+                }
+            }
+            return string.Empty;
+        }
+
+        public string PickSelectable(string arg) {
+            for (int i = 0; Selectables.Count > i; ++i) {
+                if (-1 < arg.IndexOf(Selectables[i])) {
+                    return Selectables[i];
+                }
+            }
+            return string.Empty;
+        }
+
+        public string PickTrigger(string arg) {
+            for (int i = 0; Triggers.Count > i; ++i) {
+                if (-1 < arg.IndexOf(Triggers[i])) {
+                    return Triggers[i];
+                }
+            }
+            return string.Empty;
+        }
     }
 }
