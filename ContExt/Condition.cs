@@ -30,11 +30,11 @@ public class Condition {
 
     private Match match;
 
-    public IList<Match> Get { get; }
+    public IList<Match> Hit { get; }
 
     public Condition() {
         rowConditions = new List<RowCondition>();
-        Get = new List<Match>();
+        Hit = new List<Match>();
         match = new Match();
     }
 
@@ -49,7 +49,7 @@ public class Condition {
         int testStart = 0;
         if (!match.Started && rowConditions[0].Test(arg)) {
             match.Tag = Tag;
-            match.Start(rix);
+            match.Start = rix;
             testStart += rowConditions[0].Left;
         }
         if (match.Started) {
@@ -70,7 +70,7 @@ public class Condition {
         }
         if (AllHit()) {
             InitConditions();
-            Get.Add(match);
+            Hit.Add(match);
             match = new Match();
         }
     }
@@ -115,7 +115,7 @@ public class Condition {
 
     public void Init() {
         InitConditions();
-        Get.Clear();
+        Hit.Clear();
         match.Init();
     }
 

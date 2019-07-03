@@ -25,37 +25,33 @@ public class Match {
 
     public string Tag { get; set; }
 
-    public IList<string> Get { get; }
+    public IList<string> Hit { get; }
 
-    public int StartAt { get; private set; }
+    public int Start { get; set; }
 
     public string Path { get; set; }
 
     public string Pattern { get; set; }
 
-    public bool Started => -1 < StartAt;
+    public bool Started => -1 < Start;
 
     public Match() {
-        Get = new List<string>();
-        StartAt = -1;
-    }
-
-    public void Start(int arg) {
-        StartAt = arg;
+        Hit = new List<string>();
+        Start = -1;
     }
 
     public void Add(string arg) {
-        Get.Add(arg);
+        Hit.Add(arg);
     }
 
     public void Init() {
-        Get.Clear();
-        StartAt = -1;
+        Hit.Clear();
+        Start = -1;
     }
 
     public string OneLine() {
         string ret = @"";
-        foreach (string l in Get) {
+        foreach (string l in Hit) {
             ret += l;
         }
         return ret;

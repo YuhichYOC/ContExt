@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ContExtKicker {
 
@@ -8,59 +7,50 @@ namespace ContExtKicker {
         private static void Main(string[] args) {
             try {
                 ArgumentPicker picker = new ArgumentPicker(args);
-                if (string.IsNullOrEmpty(picker.PatternFile)) {
+                if (string.IsNullOrEmpty(picker.Pattern)) {
                     return;
                 }
-                if (string.IsNullOrEmpty(picker.DirectoryPath)) {
+                if (string.IsNullOrEmpty(picker.Directory)) {
                     return;
                 }
                 ContExt c = new ContExt();
-                if (!string.IsNullOrEmpty(picker.Delimiter)) {
-                    c.Delimiter = picker.Delimiter;
-                }
-                if (!string.IsNullOrEmpty(picker.Encoding)) {
-                    c.Encoding = picker.Encoding;
-                }
-                c.Init(picker.PatternFile, false);
-                c.Scan(picker.DirectoryPath);
-                if (string.IsNullOrEmpty(picker.OutputPath)) {
-                    WriteStdout(c.Get);
-                }
-                else {
-                    Write(c.Get, picker.OutputPath);
-                }
+                c.Init(picker.Pattern, false);
+                SetDelimiter(c, picker);
+                SetEncoding(c, picker);
+                InitC(c, picker);
+                c.Scan(picker.Directory);
+                Write(c, picker);
             }
             catch (System.Exception ex) {
                 Console.WriteLine(ex.Message);
             }
         }
 
-        private static void Write(IList<Match> arg, string path) {
-            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(path)) {
-                for (int i = 0; arg.Count > i; ++i) {
-                    for (int j = 0; arg[i].Get.Count > j; ++j) {
-                        sw.Write(arg[i].Path);
-                        sw.Write("\t");
-                        sw.Write((arg[i].StartAt + j).ToString());
-                        sw.Write("\t");
-                        sw.Write(arg[i].Get[j]);
-                        sw.Write("\r\n");
-                    }
-                }
+        private static void SetDelimiter(ContExt c, ArgumentPicker picker) {
+            if (!string.IsNullOrEmpty(picker.Delimiter)) {
+                c.Delimiter = picker.Delimiter;
+            }
+            else {
+                c.Delimiter = "\t";
             }
         }
 
-        private static void WriteStdout(IList<Match> arg) {
-            for (int i = 0; arg.Count > i; ++i) {
-                for (int j = 0; arg[i].Get.Count > j; ++j) {
-                    Console.Write(arg[i].Path);
-                    Console.Write("\t");
-                    Console.Write((arg[i].StartAt + j).ToString());
-                    Console.Write("\t");
-                    Console.Write(arg[i].Get[j]);
-                    Console.Write("\r\n");
-                }
+        private static void SetEncoding(ContExt c, ArgumentPicker picker) {
+            if (!string.IsNullOrEmpty(picker.Encoding)) {
+                c.Encoding = picker.Encoding;
             }
+        }
+
+        private static void InitC(ContExt c, ArgumentPicker picker) {
+            c.Init(picker.Pattern, picker.UseTag);
+        }
+
+        private static void Write(ContExt c, ArgumentPicker picker) {
+            Writer w = new Writer();
+            w.WriteTag = picker.UseTag;
+            w.WriteStdout = picker.WriteStdout;
+            w.Path = picker.Out;
+            w.Run(c.Hit);
         }
     }
 }

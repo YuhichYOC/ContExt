@@ -9,11 +9,15 @@ namespace ContExtKicker {
 
         public string Encoding { get; private set; }
 
-        public string PatternFile { get; private set; }
+        public string Pattern { get; private set; }
 
-        public string DirectoryPath { get; private set; }
+        public string Directory { get; private set; }
 
-        public string OutputPath { get; private set; }
+        public string Out { get; private set; }
+
+        public bool WriteStdout { get; private set; }
+
+        public bool UseTag { get; private set; }
 
         private List<string> argList;
 
@@ -29,9 +33,10 @@ namespace ContExtKicker {
             PairInspection();
             PickDelimiter();
             PickEncoding();
-            PickPatternFile();
-            PickDirectoryPath();
-            PickOutputPath();
+            PickPattern();
+            PickDirectory();
+            PickOut();
+            PickUseTag();
         }
 
         private void PairInspection() {
@@ -69,31 +74,31 @@ namespace ContExtKicker {
             }
         }
 
-        private void PickPatternFile() {
+        private void PickPattern() {
             for (int i = 0; argList.Count > i; ++i) {
                 if (argList[i].StartsWith(@"--Patt")) {
                     if (!System.IO.File.Exists(argList[i + 1])) {
                         throw new ArgumentException(@"パターンファイル " + argList[i + 1] + @" はファイルシステム上に存在しません");
                     }
-                    PatternFile = argList[i + 1];
+                    Pattern = argList[i + 1];
                     return;
                 }
             }
         }
 
-        private void PickDirectoryPath() {
+        private void PickDirectory() {
             for (int i = 0; argList.Count > i; ++i) {
                 if (argList[i].StartsWith(@"--Dir")) {
                     if (!System.IO.Directory.Exists(argList[i + 1])) {
                         throw new ArgumentException(@"ディレクトリ " + argList[i + 1] + @" はファイルシステム上に存在しません");
                     }
-                    DirectoryPath = argList[i + 1];
+                    Directory = argList[i + 1];
                     return;
                 }
             }
         }
 
-        private void PickOutputPath() {
+        private void PickOut() {
             for (int i = 0; argList.Count > i; ++i) {
                 if (argList[i].StartsWith(@"--Out")) {
                     if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(argList[i + 1]))) {
@@ -102,8 +107,24 @@ namespace ContExtKicker {
                     if (System.IO.File.Exists(argList[i + 1])) {
                         throw new ArgumentException(@"出力先ファイル " + argList[i + 1] + @" が既に存在します");
                     }
-                    OutputPath = argList[i + 1];
+                    Out = argList[i + 1];
+                    WriteStdout = false;
                     return;
+                }
+            }
+            Out = @"";
+            WriteStdout = true;
+        }
+
+        private void PickUseTag() {
+            for (int i = 0; argList.Count > i; ++i) {
+                if (argList[i].StartsWith(@"--UseTag")) {
+                    if (@"yes".Equals(argList[i + 1])) {
+                        UseTag = true;
+                    }
+                    else {
+                        UseTag = false;
+                    }
                 }
             }
         }

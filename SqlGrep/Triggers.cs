@@ -58,7 +58,7 @@ namespace SqlGrep {
             PatternPicker.FillTriggers(NamePicker);
             c.Init(PatternPicker.Triggers, true);
             c.Scan(path);
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Trigger trigger = null;
             string currentFile = @"";
             for (int i = 0; ret.Count > i; ++i) {

@@ -14,7 +14,7 @@ namespace ContExtTest {
             c.Init(@"./patterns.txt", false);
             c.Scan(@"./Test1");
 
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
 
             Assert.AreEqual(6, ret.Count);
 
@@ -34,17 +34,17 @@ namespace ContExtTest {
             Assert.AreEqual(F1, System.IO.Path.GetFileName(ret[0].Path));
             Assert.AreEqual(F1, System.IO.Path.GetFileName(ret[1].Path));
 
-            Assert.AreEqual(1, ret[0].StartAt);
-            Assert.AreEqual(7, ret[1].StartAt);
+            Assert.AreEqual(1, ret[0].Start);
+            Assert.AreEqual(7, ret[1].Start);
 
-            Assert.AreEqual(F1L1, ret[0].Get[0]);
-            Assert.AreEqual(F1L2, ret[0].Get[1]);
-            Assert.AreEqual(F1L3, ret[0].Get[2]);
-            Assert.AreEqual(F1L4, ret[0].Get[3]);
-            Assert.AreEqual(F1L5, ret[1].Get[0]);
-            Assert.AreEqual(F1L6, ret[1].Get[1]);
-            Assert.AreEqual(F1L7, ret[1].Get[2]);
-            Assert.AreEqual(F1L8, ret[1].Get[3]);
+            Assert.AreEqual(F1L1, ret[0].Hit[0]);
+            Assert.AreEqual(F1L2, ret[0].Hit[1]);
+            Assert.AreEqual(F1L3, ret[0].Hit[2]);
+            Assert.AreEqual(F1L4, ret[0].Hit[3]);
+            Assert.AreEqual(F1L5, ret[1].Hit[0]);
+            Assert.AreEqual(F1L6, ret[1].Hit[1]);
+            Assert.AreEqual(F1L7, ret[1].Hit[2]);
+            Assert.AreEqual(F1L8, ret[1].Hit[3]);
 
             const string F2L1 = @"ab1.txt contains";
             const string F2L2 = @"fgh";
@@ -54,13 +54,13 @@ namespace ContExtTest {
             Assert.AreEqual(F2, System.IO.Path.GetFileName(ret[2].Path));
             Assert.AreEqual(F2, System.IO.Path.GetFileName(ret[3].Path));
 
-            Assert.AreEqual(3, ret[2].StartAt);
-            Assert.AreEqual(6, ret[3].StartAt);
+            Assert.AreEqual(3, ret[2].Start);
+            Assert.AreEqual(6, ret[3].Start);
 
-            Assert.AreEqual(F2L1, ret[2].Get[0]);
-            Assert.AreEqual(F2L2, ret[3].Get[0]);
-            Assert.AreEqual(F2L3, ret[3].Get[1]);
-            Assert.AreEqual(F2L4, ret[3].Get[2]);
+            Assert.AreEqual(F2L1, ret[2].Hit[0]);
+            Assert.AreEqual(F2L2, ret[3].Hit[0]);
+            Assert.AreEqual(F2L3, ret[3].Hit[1]);
+            Assert.AreEqual(F2L4, ret[3].Hit[2]);
 
             const string F3L1 = @"dolore magna ac1.txt aliqua. Ut enim ad minim veniam, quis";
             const string F3L2 = @"nostrud exercitation ullamco laboris nisi ut aliquip";
@@ -75,18 +75,18 @@ namespace ContExtTest {
             Assert.AreEqual(F3, System.IO.Path.GetFileName(ret[4].Path));
             Assert.AreEqual(F3, System.IO.Path.GetFileName(ret[5].Path));
 
-            Assert.AreEqual(2, ret[4].StartAt);
-            Assert.AreEqual(4, ret[5].StartAt);
+            Assert.AreEqual(2, ret[4].Start);
+            Assert.AreEqual(4, ret[5].Start);
 
-            Assert.AreEqual(F3L1, ret[4].Get[0]);
-            Assert.AreEqual(F3L2, ret[4].Get[1]);
-            Assert.AreEqual(F3L3, ret[4].Get[2]);
-            Assert.AreEqual(F3L4, ret[4].Get[3]);
-            Assert.AreEqual(F3L5, ret[4].Get[4]);
-            Assert.AreEqual(F3L6, ret[5].Get[0]);
-            Assert.AreEqual(F3L7, ret[5].Get[1]);
-            Assert.AreEqual(F3L8, ret[5].Get[2]);
-            Assert.AreEqual(F3L9, ret[5].Get[3]);
+            Assert.AreEqual(F3L1, ret[4].Hit[0]);
+            Assert.AreEqual(F3L2, ret[4].Hit[1]);
+            Assert.AreEqual(F3L3, ret[4].Hit[2]);
+            Assert.AreEqual(F3L4, ret[4].Hit[3]);
+            Assert.AreEqual(F3L5, ret[4].Hit[4]);
+            Assert.AreEqual(F3L6, ret[5].Hit[0]);
+            Assert.AreEqual(F3L7, ret[5].Hit[1]);
+            Assert.AreEqual(F3L8, ret[5].Hit[2]);
+            Assert.AreEqual(F3L9, ret[5].Hit[3]);
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace ContExtTest {
             c.Init(@"./patterns.txt", false);
             c.Scan(@"./Test2");
 
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
 
             Assert.AreEqual(6, ret.Count);
 
@@ -117,17 +117,17 @@ namespace ContExtTest {
             Assert.AreEqual(F1, System.IO.Path.GetFileName(ret[0].Path));
             Assert.AreEqual(F1, System.IO.Path.GetFileName(ret[1].Path));
 
-            Assert.AreEqual(1, ret[0].StartAt);
-            Assert.AreEqual(7, ret[1].StartAt);
+            Assert.AreEqual(1, ret[0].Start);
+            Assert.AreEqual(7, ret[1].Start);
 
-            Assert.AreEqual(F1L1, ret[0].Get[0]);
-            Assert.AreEqual(F1L2, ret[0].Get[1]);
-            Assert.AreEqual(F1L3, ret[0].Get[2]);
-            Assert.AreEqual(F1L4, ret[0].Get[3]);
-            Assert.AreEqual(F1L5, ret[1].Get[0]);
-            Assert.AreEqual(F1L6, ret[1].Get[1]);
-            Assert.AreEqual(F1L7, ret[1].Get[2]);
-            Assert.AreEqual(F1L8, ret[1].Get[3]);
+            Assert.AreEqual(F1L1, ret[0].Hit[0]);
+            Assert.AreEqual(F1L2, ret[0].Hit[1]);
+            Assert.AreEqual(F1L3, ret[0].Hit[2]);
+            Assert.AreEqual(F1L4, ret[0].Hit[3]);
+            Assert.AreEqual(F1L5, ret[1].Hit[0]);
+            Assert.AreEqual(F1L6, ret[1].Hit[1]);
+            Assert.AreEqual(F1L7, ret[1].Hit[2]);
+            Assert.AreEqual(F1L8, ret[1].Hit[3]);
 
             const string F2L1 = @"ab1.txt contains";
             const string F2L2 = @"fgh";
@@ -137,13 +137,13 @@ namespace ContExtTest {
             Assert.AreEqual(F2, System.IO.Path.GetFileName(ret[2].Path));
             Assert.AreEqual(F2, System.IO.Path.GetFileName(ret[3].Path));
 
-            Assert.AreEqual(3, ret[2].StartAt);
-            Assert.AreEqual(6, ret[3].StartAt);
+            Assert.AreEqual(3, ret[2].Start);
+            Assert.AreEqual(6, ret[3].Start);
 
-            Assert.AreEqual(F2L1, ret[2].Get[0]);
-            Assert.AreEqual(F2L2, ret[3].Get[0]);
-            Assert.AreEqual(F2L3, ret[3].Get[1]);
-            Assert.AreEqual(F2L4, ret[3].Get[2]);
+            Assert.AreEqual(F2L1, ret[2].Hit[0]);
+            Assert.AreEqual(F2L2, ret[3].Hit[0]);
+            Assert.AreEqual(F2L3, ret[3].Hit[1]);
+            Assert.AreEqual(F2L4, ret[3].Hit[2]);
 
             const string F3L1 = @"dolore magna ac1.txt aliqua. Ut enim ad minim veniam, quis";
             const string F3L2 = @"nostrud exercitation ullamco laboris nisi ut aliquip";
@@ -158,18 +158,18 @@ namespace ContExtTest {
             Assert.AreEqual(F3, System.IO.Path.GetFileName(ret[4].Path));
             Assert.AreEqual(F3, System.IO.Path.GetFileName(ret[5].Path));
 
-            Assert.AreEqual(2, ret[4].StartAt);
-            Assert.AreEqual(4, ret[5].StartAt);
+            Assert.AreEqual(2, ret[4].Start);
+            Assert.AreEqual(4, ret[5].Start);
 
-            Assert.AreEqual(F3L1, ret[4].Get[0]);
-            Assert.AreEqual(F3L2, ret[4].Get[1]);
-            Assert.AreEqual(F3L3, ret[4].Get[2]);
-            Assert.AreEqual(F3L4, ret[4].Get[3]);
-            Assert.AreEqual(F3L5, ret[4].Get[4]);
-            Assert.AreEqual(F3L6, ret[5].Get[0]);
-            Assert.AreEqual(F3L7, ret[5].Get[1]);
-            Assert.AreEqual(F3L8, ret[5].Get[2]);
-            Assert.AreEqual(F3L9, ret[5].Get[3]);
+            Assert.AreEqual(F3L1, ret[4].Hit[0]);
+            Assert.AreEqual(F3L2, ret[4].Hit[1]);
+            Assert.AreEqual(F3L3, ret[4].Hit[2]);
+            Assert.AreEqual(F3L4, ret[4].Hit[3]);
+            Assert.AreEqual(F3L5, ret[4].Hit[4]);
+            Assert.AreEqual(F3L6, ret[5].Hit[0]);
+            Assert.AreEqual(F3L7, ret[5].Hit[1]);
+            Assert.AreEqual(F3L8, ret[5].Hit[2]);
+            Assert.AreEqual(F3L9, ret[5].Hit[3]);
         }
     }
 }

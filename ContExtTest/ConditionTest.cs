@@ -18,19 +18,19 @@ namespace ContExtTest {
                     ++rc;
                 }
             }
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Assert.AreEqual(1, ret.Count);
-            Assert.AreEqual(4, ret[0].Get.Count);
-            Assert.AreEqual(1, ret[0].StartAt);
+            Assert.AreEqual(4, ret[0].Hit.Count);
+            Assert.AreEqual(1, ret[0].Start);
 
             const string L1 = @"a1.txt";
             const string L2 = @"elit, sed do eiusmod tempor incididunt ut labore et";
             const string L3 = @"dolore magna aliqua. Ut enim ad minim veniam, quis";
             const string L4 = @"contains";
-            Assert.AreEqual(L1, ret[0].Get[0]);
-            Assert.AreEqual(L2, ret[0].Get[1]);
-            Assert.AreEqual(L3, ret[0].Get[2]);
-            Assert.AreEqual(L4, ret[0].Get[3]);
+            Assert.AreEqual(L1, ret[0].Hit[0]);
+            Assert.AreEqual(L2, ret[0].Hit[1]);
+            Assert.AreEqual(L3, ret[0].Hit[2]);
+            Assert.AreEqual(L4, ret[0].Hit[3]);
         }
 
         [TestMethod]
@@ -45,21 +45,21 @@ namespace ContExtTest {
                     ++rc;
                 }
             }
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Assert.AreEqual(1, ret.Count);
-            Assert.AreEqual(5, ret[0].Get.Count);
-            Assert.AreEqual(2, ret[0].StartAt);
+            Assert.AreEqual(5, ret[0].Hit.Count);
+            Assert.AreEqual(2, ret[0].Start);
 
             const string L1 = @"dolore magna ac1.txt aliqua. Ut enim ad minim veniam, quis";
             const string L2 = @"nostrud exercitation ullamco laboris nisi ut aliquip";
             const string L3 = @"ex ea commodo klm consequat. Duis aute irure dolor in";
             const string L4 = @"reprehenderit in voluptate velit esse cillum dolore";
             const string L5 = @"eu fugiat contains nulla pariatur. Excepteur sint occaecat";
-            Assert.AreEqual(L1, ret[0].Get[0]);
-            Assert.AreEqual(L2, ret[0].Get[1]);
-            Assert.AreEqual(L3, ret[0].Get[2]);
-            Assert.AreEqual(L4, ret[0].Get[3]);
-            Assert.AreEqual(L5, ret[0].Get[4]);
+            Assert.AreEqual(L1, ret[0].Hit[0]);
+            Assert.AreEqual(L2, ret[0].Hit[1]);
+            Assert.AreEqual(L3, ret[0].Hit[2]);
+            Assert.AreEqual(L4, ret[0].Hit[3]);
+            Assert.AreEqual(L5, ret[0].Hit[4]);
         }
 
         [TestMethod]
@@ -75,10 +75,10 @@ namespace ContExtTest {
                     ++rc;
                 }
             }
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Assert.AreEqual(1, ret.Count);
-            Assert.AreEqual(7, ret[0].Get.Count);
-            Assert.AreEqual(1, ret[0].StartAt);
+            Assert.AreEqual(7, ret[0].Hit.Count);
+            Assert.AreEqual(1, ret[0].Start);
 
             const string L1 = @"ConditionTest::TestMethod3 start";
             const string L2 = @"elit, sed do eiusmod tempor incididunt ut labore et";
@@ -87,13 +87,13 @@ namespace ContExtTest {
             const string L5 = @"nostrud exercitation ullamco laboris nisi ut aliquip";
             const string L6 = @"ex ea commodo consequat. Duis aute irure dolor in";
             const string L7 = @"ConditionTest::TestMethod3 end";
-            Assert.AreEqual(L1, ret[0].Get[0]);
-            Assert.AreEqual(L2, ret[0].Get[1]);
-            Assert.AreEqual(L3, ret[0].Get[2]);
-            Assert.AreEqual(L4, ret[0].Get[3]);
-            Assert.AreEqual(L5, ret[0].Get[4]);
-            Assert.AreEqual(L6, ret[0].Get[5]);
-            Assert.AreEqual(L7, ret[0].Get[6]);
+            Assert.AreEqual(L1, ret[0].Hit[0]);
+            Assert.AreEqual(L2, ret[0].Hit[1]);
+            Assert.AreEqual(L3, ret[0].Hit[2]);
+            Assert.AreEqual(L4, ret[0].Hit[3]);
+            Assert.AreEqual(L5, ret[0].Hit[4]);
+            Assert.AreEqual(L6, ret[0].Hit[5]);
+            Assert.AreEqual(L7, ret[0].Hit[6]);
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@ namespace ContExtTest {
                     ++rc;
                 }
             }
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Assert.AreEqual(0, ret.Count);
         }
 
@@ -135,9 +135,9 @@ namespace ContExtTest {
             c.Test(TEST4, 3);
             c.Test(TEST5, 4);
 
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Assert.AreEqual(1, ret.Count);
-            Assert.AreEqual(4, ret[0].Get.Count);
+            Assert.AreEqual(4, ret[0].Hit.Count);
         }
 
         [TestMethod]
@@ -168,9 +168,9 @@ namespace ContExtTest {
             c.Test(TEST1, 0);
             c.Test(TEST2, 1);
 
-            IList<Match> ret = c.Get;
+            IList<Match> ret = c.Hit;
             Assert.AreEqual(1, ret.Count);
-            Assert.AreEqual(2, ret[0].Get.Count);
+            Assert.AreEqual(2, ret[0].Hit.Count);
         }
     }
 }

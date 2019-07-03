@@ -29,13 +29,13 @@ public class ContExt {
 
     public string Encoding { get; set; }
 
-    public IList<Match> Get { get; private set; }
+    public IList<Match> Hit { get; private set; }
 
     public ContExt() {
         conditions = new List<Condition>();
         Delimiter = @"|";
         Encoding = @"UTF-8";
-        Get = new List<Match>();
+        Hit = new List<Match>();
     }
 
     public void Init(string arg, bool startsWithTag) {
@@ -97,11 +97,11 @@ public class ContExt {
                 }
             }
             foreach (Condition c in conditions) {
-                if (0 < c.Get.Count) {
-                    foreach (Match m in c.Get) {
+                if (0 < c.Hit.Count) {
+                    foreach (Match m in c.Hit) {
                         m.Path = f.Path;
                         m.Pattern = c.ToString();
-                        Get.Add(m);
+                        Hit.Add(m);
                     }
                 }
                 c.Init();

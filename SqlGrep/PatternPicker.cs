@@ -98,9 +98,9 @@ namespace SqlGrep {
         }
 
         private void Pick(IList<IList<string>> vs, Condition condition) {
-            if (0 < condition.Get.Count && 2 < condition.Get[0].Get.Count) {
-                for (int i = 1; condition.Get[0].Get.Count - 1 > i; ++i) {
-                    vs.Add(new List<string>(condition.Get[0].Get[i].Split("\t".ToCharArray())));
+            if (0 < condition.Hit.Count && 2 < condition.Hit[0].Hit.Count) {
+                for (int i = 1; condition.Hit[0].Hit.Count - 1 > i; ++i) {
+                    vs.Add(new List<string>(condition.Hit[0].Hit[i].Split("\t".ToCharArray())));
                 }
             }
         }
